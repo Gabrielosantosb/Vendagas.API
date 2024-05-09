@@ -10,10 +10,11 @@ using Vendagas.API.ORM.Context;
 using Vendagas.API.ORM.Entity;
 using Vendagas.API.ORM.Interface;
 using Vendagas.API.ORM.Repository;
+using Vendagas.API.Application.Services.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
@@ -35,19 +36,27 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 builder.Services.AddAuthorization();
 
-// Dependency Injection
+
+#region dependecyInjection
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<BaseRepository<UserModel>>();
 builder.Services.AddScoped<BaseRepository<EmpresaModel>>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
-// MySQL Configuration
+#endregion dependecyInjection
+
+
+#region mysql
 builder.Services.AddDbContext<VendagasContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     var serverVersion = ServerVersion.AutoDetect(connectionString);
     options.UseMySql(connectionString, serverVersion);
 });
+
+#endregion mysql
+
 
 builder.Services.AddCors(options =>
 {

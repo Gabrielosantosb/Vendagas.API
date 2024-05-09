@@ -38,7 +38,7 @@ namespace Vendagas.API.Application.Services.Token
         );
 
             var stringToken = new JwtSecurityTokenHandler().WriteToken(token);
-            
+
             return stringToken;
         }
         public string GenerateRefreshToken()
