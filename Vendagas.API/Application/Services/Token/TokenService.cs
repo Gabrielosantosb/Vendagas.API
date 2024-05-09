@@ -33,7 +33,7 @@ namespace Vendagas.API.Application.Services.Token
             issuer: issuer,
             audience: audience,
             claims: claims,
-            expires: DateTime.Now.AddDays(300),
+            expires: DateTime.Now.AddDays(7),
             signingCredentials: credentials
         );
 
