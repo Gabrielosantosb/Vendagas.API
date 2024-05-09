@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Http;
 using System.Text;
 using Vendagas.API.Application.Services.Token;
 using Vendagas.API.ORM.Context;
+using Vendagas.API.ORM.Entity;
 using Vendagas.API.ORM.Interface;
-
+using Vendagas.API.ORM.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,25 +34,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 builder.Services.AddAuthorization();
 
-
-
-
-#region dependecyInjection
+// Dependency Injection
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+builder.Services.AddScoped<BaseRepository<UserModel>>();
+builder.Services.AddScoped<BaseRepository<EmpresaModel>>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
-
-#endregion dependecyInjection
-
-#region mysqlconfig
+// MySQL Configuration
 builder.Services.AddDbContext<VendagasContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     var serverVersion = ServerVersion.AutoDetect(connectionString);
     options.UseMySql(connectionString, serverVersion);
 });
-#endregion mysqlconfig
 
 builder.Services.AddCors(options =>
 {
@@ -63,6 +60,14 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// Database creation logic
+using (var serviceScope = app.Services.CreateScope())
+{
+    var services = serviceScope.ServiceProvider;
+    var context = services.GetRequiredService<VendagasContext>();
+    context.Database.EnsureCreated();
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -72,14 +77,15 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = "swagger";
     });
 }
+
 app.UseCors(options =>
 {
     options.AllowAnyOrigin();
     options.AllowAnyMethod();
     options.AllowAnyHeader();
 });
+
 app.UseHttpsRedirection();
-app.UseAuthentication();
 app.UseAuthentication();
 app.UseAuthorization();
 
