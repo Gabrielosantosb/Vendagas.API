@@ -10,5 +10,7 @@ namespace Vendagas.API.ORM.Entity
         public string Email { get; set; }
         public string Password { get; set; }
 
+        public List<EmpresaModel> Empresa { get; set; }
+
     }
 }

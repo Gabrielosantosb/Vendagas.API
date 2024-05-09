@@ -10,5 +10,6 @@ namespace Vendagas.API.ORM.Context
         }
 
         public DbSet<UserModel> User { get; set; }
+        public DbSet<EmpresaModel> Empresa { get; set; }
     }
 }
