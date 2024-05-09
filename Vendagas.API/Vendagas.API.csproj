@@ -26,9 +26,6 @@
 
   <ItemGroup>
     <Folder Include="Application\" />
-    <Folder Include="ORM\Context\" />
-    <Folder Include="ORM\Entity\" />
-    <Folder Include="ORM\Interface\" />
     <Folder Include="ORM\Model\" />
     <Folder Include="ORM\Repository\" />
   </ItemGroup>
