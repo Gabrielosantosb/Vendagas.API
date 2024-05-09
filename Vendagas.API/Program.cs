@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Text;
 using Vendagas.API.Application.Services.Token;
 using Vendagas.API.ORM.Context;
@@ -60,12 +61,20 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Database creation logic
-using (var serviceScope = app.Services.CreateScope())
+// Database migration logic
+using (var scope = app.Services.CreateScope())
 {
-    var services = serviceScope.ServiceProvider;
+    var services = scope.ServiceProvider;
     var context = services.GetRequiredService<VendagasContext>();
-    context.Database.EnsureCreated();
+    try
+    {
+        context.Database.Migrate();        
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("An error occurred while migrating the database:");
+        Console.WriteLine(ex.Message);
+    }
 }
 
 if (app.Environment.IsDevelopment())
@@ -73,7 +82,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "AnamneseAPI");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Vendergas");
         c.RoutePrefix = "swagger";
     });
 }
