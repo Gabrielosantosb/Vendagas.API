@@ -13,6 +13,11 @@ namespace Vendagas.API.ORM.Context
         public DbSet<EmpresaModel> Empresa { get; set; }
         public DbSet<ClienteModel> Cliente { get; set; }
         public DbSet<ProdutoModel> Produto { get; set; }
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {            
+            modelBuilder.Entity<ProdutoModel>()
+                .HasIndex(p => p.EmpresaId)
+                .IsUnique(false);
+        }
     }
 }

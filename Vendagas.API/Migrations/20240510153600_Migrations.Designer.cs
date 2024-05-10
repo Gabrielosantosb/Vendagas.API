@@ -10,8 +10,8 @@ using Vendagas.API.ORM.Context;
 namespace Vendagas.API.Migrations
 {
     [DbContext(typeof(VendagasContext))]
-    [Migration("20240510140706_relationEmpresaProduto")]
-    partial class relationEmpresaProduto
+    [Migration("20240510153600_Migrations")]
+    partial class Migrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
