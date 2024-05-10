@@ -6,7 +6,8 @@ namespace Vendagas.API.Application.Services.User
     public interface IUserService
     {
         bool IsEmailTaken(string email);
-        UserModel GetUserById();
+        UserModel GetUserIdByToken();
+        UserModel GetUserById(int id);
         UserModel CreateUser(CreateUserModel createUserModel);
         Task<bool> ValidateCredentials(string email, string password);
         Task<UserModel> GetUserByEmailAsync(string email);

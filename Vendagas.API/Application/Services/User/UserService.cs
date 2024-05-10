@@ -48,12 +48,17 @@ namespace Vendagas.API.Application.Services.User
             return await _userRepository.FindAsync(u => u.Email == email);
         }
 
-        public UserModel GetUserById()
+        public UserModel GetUserIdByToken()
         {
             int userId = _tokenService.GetUserId();
             return _userRepository.GetById(userId);
         }
 
+        public UserModel GetUserById(int userId)
+        {
+            var user = _userRepository.GetAll().Where(u => u.UserId == userId).FirstOrDefault();
+            return user;
+        }
         public bool IsEmailTaken(string email)
         {
             return _userRepository.FindAll(e => e.Email == email).Any();

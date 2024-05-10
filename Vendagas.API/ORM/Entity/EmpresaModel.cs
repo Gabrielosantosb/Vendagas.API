@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Vendagas.API.ORM.Entity
 {
@@ -7,9 +8,12 @@ namespace Vendagas.API.ORM.Entity
 
         [Key]
         public int EmpresaId { get; set; }
+        public string NomeFantasia { get; set; }
         public string RazaoSocial { get; set; }
         public string Cnpj { get; set; }
 
+
+        [JsonIgnore]
         public UserModel User { get; set; }
 
     }

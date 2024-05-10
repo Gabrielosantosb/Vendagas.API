@@ -11,6 +11,7 @@ using Vendagas.API.ORM.Entity;
 using Vendagas.API.ORM.Interface;
 using Vendagas.API.ORM.Repository;
 using Vendagas.API.Application.Services.User;
+using Vendagas.API.Application.Services.Empresa;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,8 +42,12 @@ builder.Services.AddAuthorization();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<BaseRepository<UserModel>>();
 builder.Services.AddScoped<BaseRepository<EmpresaModel>>();
+
+
+
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IEmpresaService, EmpresaService>();
 
 #endregion dependecyInjection
 
