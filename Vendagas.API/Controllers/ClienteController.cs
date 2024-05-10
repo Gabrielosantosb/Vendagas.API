@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Vendagas.API.Application.Services.Cliente;
 using Vendagas.API.ORM.Model.Cliente;
 
@@ -16,6 +17,9 @@ namespace Vendagas.API.Controllers
         }
 
         [HttpPost("create-client/{empresaId}")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult CreateCliente(int empresaId, [FromBody] ClienteRequest clienteRequest)
         {
             if (clienteRequest == null)

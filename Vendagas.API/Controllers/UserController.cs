@@ -23,7 +23,7 @@ namespace Vendagas.API.Controllers
 
 
         [HttpPost("login")]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Login([FromBody] UserRequestModel loginModel)

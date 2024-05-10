@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Vendagas.API.Application.Services.PedidoProduto;
 using Vendagas.API.ORM.Model.ProdutoPedido;
 
@@ -17,6 +18,7 @@ namespace Vendagas.API.Controllers
         }
 
         [HttpGet("get-all-produto-pedido")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult GetAllEmpresas()
@@ -34,6 +36,7 @@ namespace Vendagas.API.Controllers
 
 
         [HttpPost("create-produto-pedido/{pedidoId}/{produtoId}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult CreateEmpresa(int pedidoId, int produtoId, ProdutoPedidoRequest produtoPedido)

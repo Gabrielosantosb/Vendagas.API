@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Vendagas.API.Application.Services.Empresa;
 using Vendagas.API.ORM.Entity;
@@ -19,6 +20,7 @@ namespace Vendagas.API.Controllers
         }
 
         [HttpGet("get-all-empresas")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult GetAllEmpresas()
@@ -35,6 +37,7 @@ namespace Vendagas.API.Controllers
         }
 
         [HttpPost("create-empresa/{userId}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult CreateEmpresa(int userId, CreateEmpresaModel empresa)
@@ -51,6 +54,7 @@ namespace Vendagas.API.Controllers
         }
 
         [HttpGet("get-empresa/{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult GetEmpresaById(int id)
@@ -71,6 +75,7 @@ namespace Vendagas.API.Controllers
         }
 
         [HttpPut("update-empresa/{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult UpdateEmpresa(int id, CreateEmpresaModel updatedEmpresa)
@@ -92,6 +97,7 @@ namespace Vendagas.API.Controllers
         }
 
         [HttpDelete("delete-empresa/{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult DeleteEmpresa(int id)
