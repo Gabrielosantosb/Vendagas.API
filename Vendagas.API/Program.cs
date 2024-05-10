@@ -14,6 +14,7 @@ using Vendagas.API.Application.Services.User;
 using Vendagas.API.Application.Services.Empresa;
 using Vendagas.API.Application.Services.Cliente;
 using Vendagas.API.Application.Services.Produto;
+using Vendagas.API.Application.Services.Pedido;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +47,7 @@ builder.Services.AddScoped<BaseRepository<UserModel>>();
 builder.Services.AddScoped<BaseRepository<EmpresaModel>>();
 builder.Services.AddScoped<BaseRepository<ClienteModel>>();
 builder.Services.AddScoped<BaseRepository<ProdutoModel>>();
+builder.Services.AddScoped<BaseRepository<PedidoModel>>();
 
 
 
@@ -54,6 +56,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IEmpresaService, EmpresaService>();
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
+builder.Services.AddScoped<IPedidoService, PedidoService>();
 
 
 #endregion dependecyInjection

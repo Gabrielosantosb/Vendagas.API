@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vendagas.API.ORM.Context;
 
@@ -10,9 +11,11 @@ using Vendagas.API.ORM.Context;
 namespace Vendagas.API.Migrations
 {
     [DbContext(typeof(VendagasContext))]
-    partial class VendagasContextModelSnapshot : ModelSnapshot
+    [Migration("20240510154615_PedidoModelCliente")]
+    partial class PedidoModelCliente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -19,6 +19,9 @@ namespace Vendagas.API.ORM.Entity
         public List<ProdutoModel> Produto { get; set; }
 
         [JsonIgnore]
+        public List<PedidoModel> Pedidos { get; set; }
+
+        [JsonIgnore]
         public UserModel User { get; set; }
 
         //public ProdutoModel Produto { get; set; }
