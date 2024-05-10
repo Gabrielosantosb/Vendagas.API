@@ -68,5 +68,26 @@ namespace Vendagas.API.Controllers
             }
             return BadRequest();
         }
+
+        [HttpGet("empresa/{empresaId}/nome")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<string> GetEmpresaNameById(int empresaId)
+        {
+            try
+            {
+                var nomeDaEmpresa = _clienteService.GetEmpresaNameById(empresaId);
+                return Ok(nomeDaEmpresa);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

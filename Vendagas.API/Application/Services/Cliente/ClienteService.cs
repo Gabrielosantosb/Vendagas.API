@@ -52,5 +52,17 @@ namespace Vendagas.API.Application.Services.Cliente
         {
             return _clienteRepository.GetAll().Where(c => c.EmpresaId == empresaId);
         }
+
+        public string GetEmpresaNameById(int empresaId)
+        {
+            var empresa = _empresaService.GetEmpresaById(empresaId);
+
+            if (empresa == null)
+            {
+                throw new KeyNotFoundException($"Empresa com o ID {empresaId} não encontrada");
+            }
+
+            return empresa.NomeFantasia; 
+        }
     }
 }
