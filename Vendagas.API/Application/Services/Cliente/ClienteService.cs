@@ -1,6 +1,8 @@
-﻿using Vendagas.API.Application.Services.Empresa;
+﻿using Microsoft.EntityFrameworkCore;
+using Vendagas.API.Application.Services.Empresa;
 using Vendagas.API.Application.Services.Token;
 using Vendagas.API.Application.Services.User;
+using Vendagas.API.ORM.Context;
 using Vendagas.API.ORM.Entity;
 using Vendagas.API.ORM.Model.Cliente;
 using Vendagas.API.ORM.Repository;
@@ -11,6 +13,7 @@ namespace Vendagas.API.Application.Services.Cliente
     {
         private readonly BaseRepository<ClienteModel> _clienteRepository;
         private readonly IEmpresaService _empresaService;
+        private readonly VendagasContext _context;
 
         public ClienteService(BaseRepository<ClienteModel> clienteRepository, IEmpresaService empresaService)
         {
@@ -45,7 +48,7 @@ namespace Vendagas.API.Application.Services.Cliente
 
         public IEnumerable<ClienteModel> GetAllClientes()
         {
-            return _clienteRepository.GetAll();
+            return _clienteRepository._context.Cliente.Include(e => e.Empresa).ToList();
         }
 
         public IEnumerable<ClienteModel> GetAllClientesByEmpresa(int empresaId)
