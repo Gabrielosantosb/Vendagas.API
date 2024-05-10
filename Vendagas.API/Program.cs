@@ -13,6 +13,7 @@ using Vendagas.API.ORM.Repository;
 using Vendagas.API.Application.Services.User;
 using Vendagas.API.Application.Services.Empresa;
 using Vendagas.API.Application.Services.Cliente;
+using Vendagas.API.Application.Services.Produto;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,6 +53,7 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IEmpresaService, EmpresaService>();
+builder.Services.AddScoped<IProdutoService, ProdutoService>();
 
 
 #endregion dependecyInjection

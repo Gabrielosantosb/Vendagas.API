@@ -8,10 +8,12 @@ namespace Vendagas.API.ORM.Entity
     {
         [Key]
         public int ProdutoId { get; set; }
+
+        public string Nome { get; set; }
         public string Valor {  get; set; }
         public string Descricao { get; set; }
 
-        [ForeignKey("EmpresaId")]
+        //[ForeignKey("EmpresaId")]
         public int EmpresaId { get; set; }
         [JsonIgnore]
         public EmpresaModel Empresa { get; set; }
