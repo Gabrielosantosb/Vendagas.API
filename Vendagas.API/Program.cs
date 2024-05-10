@@ -15,6 +15,7 @@ using Vendagas.API.Application.Services.Empresa;
 using Vendagas.API.Application.Services.Cliente;
 using Vendagas.API.Application.Services.Produto;
 using Vendagas.API.Application.Services.Pedido;
+using Vendagas.API.Application.Services.PedidoProduto;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +59,7 @@ builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IEmpresaService, EmpresaService>();
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
 builder.Services.AddScoped<IPedidoService, PedidoService>();
+builder.Services.AddScoped<IPedidoProdutoService, PedidoProdutoService>();
 
 
 #endregion dependecyInjection
