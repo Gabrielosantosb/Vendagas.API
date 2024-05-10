@@ -6,6 +6,9 @@ namespace Vendagas.API.Application.Services.PedidoProduto
 {
     public interface IPedidoProdutoService
     {
-        ProdutoModel CreatePedidoProduto(int produtoId, int pedidoId, ProdutoPedidoRequest produtoPedidoRequest);
+
+        IEnumerable<PedidoProdutoModel> GetAllProdutoPedido();
+        PedidoProdutoModel GetPedidoProdutoById(int id);
+        PedidoProdutoModel CreatePedidoProduto(int produtoId, int pedidoId, ProdutoPedidoRequest produtoPedidoRequest);
     }
 }
