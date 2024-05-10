@@ -14,6 +14,10 @@ namespace Vendagas.API.ORM.Entity
         public string Cliente { get; set; }
         public DateTime Data { get; set; }
 
+
+        [JsonIgnore]
+        public List<PedidoProdutoModel> Pedidos_Produtos { get; set; }
+
         [ForeignKey("EmpresaId")]
         public int EmpresaId { get; set; }
         [JsonIgnore]

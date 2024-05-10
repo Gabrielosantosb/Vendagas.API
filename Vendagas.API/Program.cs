@@ -48,6 +48,7 @@ builder.Services.AddScoped<BaseRepository<EmpresaModel>>();
 builder.Services.AddScoped<BaseRepository<ClienteModel>>();
 builder.Services.AddScoped<BaseRepository<ProdutoModel>>();
 builder.Services.AddScoped<BaseRepository<PedidoModel>>();
+builder.Services.AddScoped<BaseRepository<PedidoProdutoModel>>();
 
 
 
