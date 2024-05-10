@@ -44,6 +44,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<BaseRepository<UserModel>>();
 builder.Services.AddScoped<BaseRepository<EmpresaModel>>();
 builder.Services.AddScoped<BaseRepository<ClienteModel>>();
+builder.Services.AddScoped<BaseRepository<ProdutoModel>>();
 
 
 
@@ -51,6 +52,7 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IEmpresaService, EmpresaService>();
+
 
 #endregion dependecyInjection
 
