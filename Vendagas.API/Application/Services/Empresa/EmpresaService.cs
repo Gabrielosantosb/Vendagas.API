@@ -1,4 +1,5 @@
-﻿using Vendagas.API.Application.Services.Token;
+﻿using System.Runtime.InteropServices;
+using Vendagas.API.Application.Services.Token;
 using Vendagas.API.Application.Services.User;
 using Vendagas.API.ORM.Entity;
 using Vendagas.API.ORM.Model.Empresa;
@@ -46,7 +47,7 @@ namespace Vendagas.API.Application.Services.Empresa
             return createdEmpresa;
         }
 
-        public EmpresaModel UpdateEmpresa(int id, EmpresaModel updatedEmpresa)
+        public EmpresaModel UpdateEmpresa(int id, CreateEmpresaModel updatedEmpresa)
         {
             if (updatedEmpresa == null)
             {

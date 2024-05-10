@@ -73,7 +73,7 @@ namespace Vendagas.API.Controllers
         [HttpPut("update-empresa/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult UpdateEmpresa(int id, EmpresaModel updatedEmpresa)
+        public IActionResult UpdateEmpresa(int id, CreateEmpresaModel updatedEmpresa)
         {
             try
             {

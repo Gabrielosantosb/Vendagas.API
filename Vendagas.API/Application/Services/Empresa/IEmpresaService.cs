@@ -9,7 +9,7 @@ namespace Vendagas.API.Application.Services.Empresa
         EmpresaModel GetEmpresaById(int id);
 
         EmpresaModel CreateEmpresa(int userId, CreateEmpresaModel report);
-        EmpresaModel UpdateEmpresa(int id, EmpresaModel updatedReport);
+        EmpresaModel UpdateEmpresa(int id, CreateEmpresaModel updatedReport);
         EmpresaModel DeleteEmpresa(int id);
         int CountAllEmpresas();
     }
