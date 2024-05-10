@@ -16,6 +16,41 @@ namespace Vendagas.API.Controllers
             _clienteService = clienteService;
         }
 
+
+        [HttpGet("get-all-clientes")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult GetAllEmpresas()
+        {
+            try
+            {
+                var clientes = _clienteService.GetAllClientes();
+                return Ok(clientes);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao buscar empresas: {ex.Message}");
+            }
+        }
+
+        [HttpGet("get-clientes-by-empresa/{empresaId}")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult GetClienteByEmpresa(int empresaId)
+        {
+            try
+            {
+                var clientes = _clienteService.GetAllClientesByEmpresa(empresaId);
+                return Ok(clientes);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao buscar empresas: {ex.Message}");
+            }
+        }
+
         [HttpPost("create-client/{empresaId}")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]

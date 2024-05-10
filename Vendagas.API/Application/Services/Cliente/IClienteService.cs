@@ -5,6 +5,8 @@ namespace Vendagas.API.Application.Services.Cliente
 {
     public interface IClienteService
     {
+        IEnumerable<ClienteModel> GetAllClientes();
+        IEnumerable<ClienteModel> GetAllClientesByEmpresa(int empresaId);
         ClienteModel CreateCliente(int empresaId, ClienteRequest clienteRequest);
     }
 }

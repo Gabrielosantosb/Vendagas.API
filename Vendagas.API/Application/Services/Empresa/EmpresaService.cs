@@ -12,6 +12,7 @@ namespace Vendagas.API.Application.Services.Empresa
         private readonly BaseRepository<EmpresaModel> _empresaRepository;
         private readonly IUserService _userService;
         private readonly ITokenService _tokenService;
+        
         public EmpresaService(BaseRepository<EmpresaModel> empresaRepository, IUserService userService, ITokenService tokenService)
         {
             _empresaRepository = empresaRepository;
@@ -90,6 +91,7 @@ namespace Vendagas.API.Application.Services.Empresa
         {
             return _empresaRepository.GetAll();
         }
+
 
         public EmpresaModel GetEmpresaById(int id)
         {

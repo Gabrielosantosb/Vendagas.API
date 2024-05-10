@@ -42,5 +42,15 @@ namespace Vendagas.API.Application.Services.Cliente
             _clienteRepository.SaveChanges();
             return createdClient;
         }
+
+        public IEnumerable<ClienteModel> GetAllClientes()
+        {
+            return _clienteRepository.GetAll();
+        }
+
+        public IEnumerable<ClienteModel> GetAllClientesByEmpresa(int empresaId)
+        {
+            return _clienteRepository.GetAll().Where(c => c.EmpresaId == empresaId);
+        }
     }
 }
