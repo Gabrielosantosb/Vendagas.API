@@ -13,6 +13,8 @@ namespace Vendagas.API.ORM.Entity
         public string Cnpj { get; set; }
 
 
+        public List<ClienteModel> Cliente { get; set; }
+
         [JsonIgnore]
         public UserModel User { get; set; }
 
