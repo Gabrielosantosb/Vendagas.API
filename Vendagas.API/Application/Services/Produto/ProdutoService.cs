@@ -1,4 +1,6 @@
-﻿using Vendagas.API.ORM.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using Vendagas.API.ORM.Context;
+using Vendagas.API.ORM.Entity;
 using Vendagas.API.ORM.Model.Produto;
 using Vendagas.API.ORM.Repository;
 
@@ -7,6 +9,7 @@ namespace Vendagas.API.Application.Services.Produto
     public class ProdutoService : IProdutoService
     {
         private readonly BaseRepository<ProdutoModel> _produtoRepository;
+        private readonly VendagasContext _context;
 
 
         public ProdutoService(BaseRepository<ProdutoModel> produtoRepository)
@@ -37,7 +40,7 @@ namespace Vendagas.API.Application.Services.Produto
 
         public IEnumerable<ProdutoModel> GetAllProdutos()
         {
-            return _produtoRepository.GetAll();
+            return _produtoRepository._context.Produto.Include(p => p.Empresa).ToList();
         }
 
         public ProdutoModel GetProdutosById(int id)
