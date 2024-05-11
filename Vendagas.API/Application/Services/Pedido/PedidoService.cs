@@ -1,4 +1,6 @@
-﻿using Vendagas.API.ORM.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using Vendagas.API.ORM.Context;
+using Vendagas.API.ORM.Entity;
 using Vendagas.API.ORM.Model.Pedido;
 using Vendagas.API.ORM.Repository;
 
@@ -7,6 +9,7 @@ namespace Vendagas.API.Application.Services.Pedido
     public class PedidoService : IPedidoService
     {
         private readonly BaseRepository<PedidoModel> _pedidoRepository;
+        private readonly VendagasContext _context;
         public PedidoService(BaseRepository<PedidoModel> pedidoRepository)
         {
             _pedidoRepository = pedidoRepository;
@@ -33,7 +36,8 @@ namespace Vendagas.API.Application.Services.Pedido
 
         public IEnumerable<PedidoModel> GetAllPedidos()
         {
-            return _pedidoRepository.GetAll();
+            return _pedidoRepository._context.Pedido.Include(p =>p.Empresa).ToList();                
+            //return _pedidoRepository.GetAll();
         }
 
         public PedidoModel GetPedidoById(int id)

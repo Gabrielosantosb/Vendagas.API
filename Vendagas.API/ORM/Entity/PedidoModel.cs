@@ -20,7 +20,7 @@ namespace Vendagas.API.ORM.Entity
 
         [ForeignKey("EmpresaId")]
         public int EmpresaId { get; set; }
-        [JsonIgnore]
+        //[JsonIgnore]
         public EmpresaModel Empresa { get; set; }
     }
 }
