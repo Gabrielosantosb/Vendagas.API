@@ -15,15 +15,22 @@ namespace Vendagas.API.Application.Services.PedidoProduto
 
         public PedidoProdutoModel CreatePedidoProduto(int produtoId, int pedidoId, ProdutoPedidoRequest produtoPedidoRequest)
         {
-            if(produtoId == null || pedidoId == null || produtoPedidoRequest == null)
+
+            // Verifica se já existe um pedido com o mesmo produtoId e pedidoId
+            var pedidoExistente = _pedidoProdutoRepository.GetAll()
+                .FirstOrDefault(pp => pp.ProdutoId == produtoId && pp.PedidoId == pedidoId);
+
+            if (pedidoExistente != null)
             {
-                throw new ArgumentNullException(nameof(produtoPedidoRequest));
+                throw new InvalidOperationException("Já existe um pedido com o mesmo produto.");
             }
+
+            // Se não houver ,cria um novo pedido
             var newPedidoProduto = new PedidoProdutoModel
             {
                 Quantidade = produtoPedidoRequest.Quantidade,
                 PedidoId = pedidoId,
-                ProdutoId = produtoId                
+                ProdutoId = produtoId
             };
             var createdPedidoProduto = _pedidoProdutoRepository.Add(newPedidoProduto);
             _pedidoProdutoRepository.SaveChanges();
