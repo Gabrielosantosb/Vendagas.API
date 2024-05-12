@@ -48,5 +48,16 @@ namespace Vendagas.API.Application.Services.Produto
             var produto = _produtoRepository.GetById(id);
             return produto;
         }
+        public void DeleteProduto(int id)
+        {
+            var produto = _produtoRepository.GetById(id);
+            if (produto == null)
+            {
+                throw new ArgumentException("Produto não encontrado", nameof(id));
+            }
+
+            _produtoRepository.Delete(produto);
+            _produtoRepository.SaveChanges();
+        }
     }
 }

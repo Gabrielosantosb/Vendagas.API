@@ -10,5 +10,8 @@ namespace Vendagas.API.Application.Services.Produto
         ProdutoModel GetProdutosById(int id);
 
         ProdutoModel CreateProduto(int empresaId, ProdutoModelRequest produtoRequest);
+
+        void DeleteProduto(int produtoId);
+
     }
 }

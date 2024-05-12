@@ -56,5 +56,22 @@ namespace Vendagas.API.Controllers
                 return StatusCode(500, $"Erro ao criar produto: {ex.Message}");
             }
         }
+
+        [HttpDelete("delete-produto/{produtoId}")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult DeleteProduto(int produtoId)
+        {
+            try
+            {
+                _produtoService.DeleteProduto(produtoId);
+                return NoContent();
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }
