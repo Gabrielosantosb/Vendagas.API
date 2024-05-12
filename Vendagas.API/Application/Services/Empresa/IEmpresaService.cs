@@ -8,7 +8,7 @@ namespace Vendagas.API.Application.Services.Empresa
         IEnumerable<EmpresaModel> GetAllEmpresas();
         EmpresaModel GetEmpresaById(int id);
 
-        EmpresaModel CreateEmpresa(int userId, CreateEmpresaModel report);
+        EmpresaModel CreateEmpresa(CreateEmpresaModel report);
         EmpresaModel UpdateEmpresa(int id, CreateEmpresaModel updatedReport);
         EmpresaModel DeleteEmpresa(int id);
         int CountAllEmpresas();

@@ -10,5 +10,7 @@ namespace Vendagas.API.Application.Services.PedidoProduto
         IEnumerable<PedidoProdutoModel> GetAllProdutoPedido();
         PedidoProdutoModel GetPedidoProdutoById(int id);
         PedidoProdutoModel CreatePedidoProduto(int produtoId, int pedidoId, ProdutoPedidoRequest produtoPedidoRequest);
+        bool VerificarPedidoExistente(int produtoId, int pedidoId);
+
     }
 }

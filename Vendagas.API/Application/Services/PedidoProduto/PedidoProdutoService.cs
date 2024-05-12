@@ -15,8 +15,7 @@ namespace Vendagas.API.Application.Services.PedidoProduto
 
         public PedidoProdutoModel CreatePedidoProduto(int produtoId, int pedidoId, ProdutoPedidoRequest produtoPedidoRequest)
         {
-
-            // Verifica se já existe um pedido com o mesmo produtoId e pedidoId
+            
             var pedidoExistente = _pedidoProdutoRepository.GetAll()
                 .FirstOrDefault(pp => pp.ProdutoId == produtoId && pp.PedidoId == pedidoId);
 
@@ -24,8 +23,7 @@ namespace Vendagas.API.Application.Services.PedidoProduto
             {
                 throw new InvalidOperationException("Já existe um pedido com o mesmo produto.");
             }
-
-            // Se não houver ,cria um novo pedido
+            
             var newPedidoProduto = new PedidoProdutoModel
             {
                 Quantidade = produtoPedidoRequest.Quantidade,
@@ -46,6 +44,11 @@ namespace Vendagas.API.Application.Services.PedidoProduto
         {
             var pedido_produto = _pedidoProdutoRepository.GetAll().FirstOrDefault(p => p.Pedido_ProdutoId == id);
             return pedido_produto;
+        }
+
+        public bool VerificarPedidoExistente(int produtoId, int pedidoId)
+        {            
+            return _pedidoProdutoRepository.GetAll().Any(p => p.ProdutoId == produtoId && p.PedidoId == pedidoId);
         }
     }
 }

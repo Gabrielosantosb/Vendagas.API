@@ -26,9 +26,9 @@ namespace Vendagas.API.Application.Services.Empresa
             return _empresaRepository.Count();
         }
 
-        public EmpresaModel CreateEmpresa(int userId, CreateEmpresaModel empresa)
-        {
-            //var userId = _tokenService.GetUserId();
+        public EmpresaModel CreateEmpresa(CreateEmpresaModel empresa)
+        {            
+            var userId = _tokenService.GetUserId();
             var user = _userService.GetUserById(userId);
             if (empresa == null)
             {

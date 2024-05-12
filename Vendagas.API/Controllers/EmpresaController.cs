@@ -36,7 +36,7 @@ namespace Vendagas.API.Controllers
             }
         }
 
-        [HttpPost("create-empresa/{userId}")]
+        [HttpPost("create-empresa")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -44,7 +44,7 @@ namespace Vendagas.API.Controllers
         {
             try
             {
-                var novaEmpresa = _empresaService.CreateEmpresa(userId, empresa);
+                var novaEmpresa = _empresaService.CreateEmpresa(empresa);
                 return CreatedAtAction(nameof(GetEmpresaById), new { id = novaEmpresa.EmpresaId }, novaEmpresa);
             }
             catch (Exception ex)

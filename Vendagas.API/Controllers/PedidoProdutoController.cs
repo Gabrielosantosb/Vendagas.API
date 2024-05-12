@@ -51,5 +51,22 @@ namespace Vendagas.API.Controllers
                 return StatusCode(500, $"Erro ao criar o pedido do produto: {ex.Message}");
             }
         }
+
+        [HttpGet("verificarPedidoExistente/{produtoId}/{pedidoId}")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult VerificarPedidoExistente(int produtoId, int pedidoId)
+        {
+            try
+            {
+                var pedidoExistente = _pedidoProdutoService.VerificarPedidoExistente(produtoId, pedidoId);
+                return Ok(pedidoExistente);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao verificar pedido existente: {ex.Message}");
+            }
+        }
     }
 }
