@@ -1,6 +1,6 @@
 ## Controle de Estoque e Lançamento de Pedidos VenderGas API
 
-Este projeto é uma API de controle de estoque e lançamento de pedidos desenvolvido .NET 6, utilizando docker
+Este projeto é uma API de controle de estoque e lançamento de pedidos desenvolvido em .NET 6 e Docker.
 
 ### Requisitos
 
