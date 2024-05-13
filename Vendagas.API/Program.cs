@@ -69,9 +69,8 @@ builder.Environment.EnvironmentName = Microsoft.AspNetCore.Hosting.EnvironmentNa
 builder.Services.AddDbContext<VendagasContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    //var serverVersion = ServerVersion.AutoDetect(connectionString);
-    //options.UseMySql(connectionString, serverVersion);
-    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 4, 0)));
+    var serverVersion = ServerVersion.AutoDetect(connectionString);
+    options.UseMySql(connectionString, serverVersion);    
 });
 
 
