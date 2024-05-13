@@ -22,4 +22,5 @@ Este projeto é uma API de controle de estoque e lançamento de pedidos desenvol
 ### Tecnologias Utilizadas
 
 - .NET 6
+- EntityFramework
 
