@@ -64,14 +64,16 @@ builder.Services.AddScoped<IPedidoProdutoService, PedidoProdutoService>();
 
 #endregion dependecyInjection
 
-
+builder.Environment.EnvironmentName = Microsoft.AspNetCore.Hosting.EnvironmentName.Development;
 #region mysql
 builder.Services.AddDbContext<VendagasContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    var serverVersion = ServerVersion.AutoDetect(connectionString);
-    options.UseMySql(connectionString, serverVersion);
+    //var serverVersion = ServerVersion.AutoDetect(connectionString);
+    //options.UseMySql(connectionString, serverVersion);
+    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 4, 0)));
 });
+
 
 #endregion mysql
 

@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+
+
+  vendagas.db:
+    image: mysql:latest
+    container_name: vendagas.db
+    environment:
+        MYSQL_ROOT_PASSWORD: Hu<1dXsCH>EF
+        MYSQL_ROOT_USER: root
+        MYSQL_DATABASE: vendagas.db
+        MYSQL_PASSWORD: Hu<1dXsCH>EF
+    restart: always
+    ports:
+        - "3307:3307"
+    expose:
+        - 3307
+    volumes:
+        - mysql_data:/var/lib/mysql
+
+  vendagas.api:
+    container_name: vendagas.api
+
+    depends_on:
+        - vendagas.db
+    restart: always
+
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      
+    ports:
+      - "3000:80"
+    

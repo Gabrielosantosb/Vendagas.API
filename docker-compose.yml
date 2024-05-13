@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  vendagas.api:
+    image: ${DOCKER_REGISTRY-}vendagasapi
+    build:
+      context: .
+      dockerfile: Vendagas.API/Dockerfile
+
+volumes:
+  mysql_data:
